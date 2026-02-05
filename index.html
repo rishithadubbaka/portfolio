@@ -3,99 +3,379 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work — Rishitha Dubbaka</title>
-  <meta name="description" content="Selected work by Rishitha Dubbaka" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>Rishitha Dubbaka — Portfolio</title>
+  <meta name="description" content="Portfolio of Rishitha Dubbaka — selected work, about, and contact." />
+  <meta name="color-scheme" content="light dark" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Design tokens (light, subtle colors) ===== */
+    :root{
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --text: #1c2430;
+      --muted: #5b6b7a;
+      --border: #e8edf5;
+      --accent: #6f8cff;      /* change this to your favorite pastel */
+      --accent-2: #77d1c8;    /* soft teal used sparingly */
+      --radius: 16px;
+      --shadow: 0 12px 28px rgba(28, 36, 48, .08);
+      --maxw: 1100px;
+    }
+
+    /* Optional dark mode (auto from system) */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg: #0e1420;
+        --surface: #131b2a;
+        --text: #e7edf7;
+        --muted: #a8b3c2;
+        --border: #22324c;
+        --shadow: 0 14px 30px rgba(0,0,0,.35);
+        --accent: #7ea1ff;
+        --accent-2: #60d1c8;
+      }
+    }
+
+    *{box-sizing:border-box}
+    html, body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      /* soft radial background */
+      background-image:
+        radial-gradient(1000px 500px at 85% -20%, rgba(111,140,255,.18), transparent 60%),
+        radial-gradient(900px 400px at -10% 20%, rgba(119,209,200,.16), transparent 55%);
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width: var(--maxw); margin: 0 auto; padding: 18px 20px}
+
+    /* ===== Header / Nav ===== */
+    .site-header{
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in oklab, var(--surface) 80%, transparent);
+      backdrop-filter: blur(10px);
+    }
+    .site-header .inner{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{font-weight:800; color:var(--text); text-decoration:none}
+    .nav a{
+      color: var(--muted); margin-left: 18px; font-weight: 600;
+      padding: 8px 10px; border-radius: 10px;
+    }
+    .nav a:hover{color: var(--text); text-decoration:none; background: var(--border)}
+    .nav a.active{color: var(--text); background: #eaf0ff; outline: 1px solid #dae6ff}
+    @media (prefers-color-scheme: dark){
+      .nav a.active{background: #233258; outline-color:#324a7d}
+      .nav a:hover{background:#19243b}
+    }
+
+    /* ===== Sections ===== */
+    section{scroll-margin-top: 90px}
+    .intro{
+      margin: 18px auto 22px; display:grid; gap:8px;
+    }
+    h1{font-size: clamp(28px, 3.2vw, 40px); margin:.2rem 0 .4rem}
+    h2{font-size: clamp(22px, 2.6vw, 28px); margin: .4rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* ===== About ===== */
+    .about{
+      background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; padding: 26px;
+    }
+    .about .bio p{margin:.4rem 0; color: var(--muted)}
+    .about .highlights{display:grid; gap:10px}
+    .chip{display:inline-block; padding:8px 12px; border-radius:999px; border:1px solid var(--border); color:var(--muted); background: #f2f6ff}
+    @media (prefers-color-scheme: dark){ .chip{background:#182544; color:#c9d5e8; border-color:#22324c} }
+    .avatar{
+      border-radius: 14px; border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.4), transparent), #eef3ff;
+      min-height: 220px; display:grid; place-items:center; color:#6a7faa; font-weight:600;
+    }
+    @media (max-width: 900px){ .about{grid-template-columns:1fr} }
+
+    /* ===== Work grid ===== */
+    .grid{
+      display:grid; gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width:1000px){ .grid{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns: 1fr} }
+
+    .card{
+      background: var(--surface); border:1px solid var(--border);
+      border-radius: 16px; box-shadow: var(--shadow); overflow: hidden;
+      display:grid; grid-template-rows: auto 1fr auto;
+    }
+    .thumb{
+      background: #f3f6fc; border-bottom:1px solid var(--border);
+      min-height: 160px; display:grid; place-items:center; color:#6b7a92; font-weight:600;
+    }
+    .thumb img{width:100%; height:220px; object-fit:cover; display:block}
+    .content{padding: 16px 18px}
+    .title{margin:6px 0 6px; font-size:1.1rem}
+    .desc{margin:0 0 10px; color: var(--muted)}
+    .tags{display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none}
+    .tags li{font-size:.82rem; padding:6px 10px; border:1px solid var(--border); border-radius:999px; color:#445063; background:#f6f9ff}
+    @media (prefers-color-scheme: dark){ .tags li{background:#18213a; color:#ced7ea; border-color:#22324c} }
+
+    .cta{
+      display:flex; justify-content:flex-end; align-items:center; padding: 12px 16px; border-top:1px solid var(--border); background: #f9fbff;
+    }
+    .go{
+      width:40px; height:40px; display:grid; place-items:center; border-radius:999px;
+      background: #eaf0ff; color:#2b45a1; border:1px solid #dfe6fb; font-weight:800;
+    }
+    .project-link{display:contents} /* make entire card clickable via the anchor wrapping inner parts */
+    @media (prefers-color-scheme: dark){
+      .cta{background:#141e33}
+      .go{background:#1b2a4f; color:#bcd0ff; border-color:#2a3d6b}
+    }
+
+    /* ===== Contact ===== */
+    .contact{
+      background: var(--surface); border:1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px;
+      display:grid; gap: 14px; max-width: 700px;
+    }
+    .form{display:grid; gap:12px}
+    .form label{display:grid; gap:6px; color: var(--muted)}
+    .form input,.form textarea{
+      padding:12px; border-radius:10px; border:1px solid var(--border);
+      background:#fff; color:var(--text)
+    }
+    @media (prefers-color-scheme: dark){
+      .form input,.form textarea{background:#0f1627; color:var(--text)}
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:10px; border:1px solid var(--border);
+      background: linear-gradient(135deg, var(--accent), #5b7cff); color:#fff; font-weight:600;
+    }
+    .links a{margin-right:12px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); margin-top:40px}
+    footer .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    small{color:var(--muted)}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+    }
+
+    /* Focus styles */
+    :where(a, button, [tabindex]):focus-visible{
+      outline: 2px solid var(--accent-2);
+      outline-offset: 2px; border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html">Rishitha Dubbaka</a>
-    <nav class="nav">
-      <a class="active" href="index.html">Work</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
 
-<main class="wrap">
-  <section class="intro">
-    <h1>Work</h1>
-    <p class="muted">A selection of projects. Click a card to visit the live site, article, or repo.</p>
-  </section>
-
-  <section aria-label="Project collection" class="grid">
-    <!-- CARD 1 -->
-    <article class="card project">
-      <a class="project-link" href="https://example.com/project-1" target="_blank" rel="noopener">
-        <figure class="thumb">
-          <img src="assets/project-1.jpg" alt="Screenshot of Risk Insights Dashboard" loading="lazy">
-        </figure>
-        <div class="content">
-          <h2 class="title">Risk Insights Dashboard</h2>
-          <p class="desc">Interactive dashboard highlighting portfolio risk drivers with drill‑downs.</p>
-          <ul class="tags">
-            <li>Tableau</li><li>Financial Analytics</li><li>SQL</li><li>Data Viz</li>
-          </ul>
-        </div>
-        <div class="cta" aria-hidden="true" title="Open">
-          <span class="icon">↗</span>
-        </div>
-      </a>
-    </article>
-
-    <!-- CARD 2 -->
-    <article class="card project">
-      <a class="project-link" href="https://example.com/project-2" target="_blank" rel="noopener">
-        <figure class="thumb">
-          <img src="assets/project-2.jpg" alt="Screenshot of Superstore Sales Analysis dashboard" loading="lazy">
-        </figure>
-        <div class="content">
-          <h2 class="title">Superstore Sales Analysis</h2>
-          <p class="desc">Analyzed sales trends, segments, and profit drivers; designed an interactive dashboard.</p>
-          <ul class="tags">
-            <li>Tableau</li><li>Dashboard Design</li><li>Sales Analytics</li><li>Excel</li>
-          </ul>
-        </div>
-        <div class="cta" aria-hidden="true" title="Open"><span class="icon">↗</span></div>
-      </a>
-    </article>
-
-    <!-- CARD 3 -->
-    <article class="card project">
-      <a class="project-link" href="https://example.com/project-3" target="_blank" rel="noopener">
-        <figure class="thumb">
-          <img src="assets/project-3.jpg" alt="Screenshot of Car Sales Cleaning and Visualization" loading="lazy">
-        </figure>
-        <div class="content">
-          <h2 class="title">Car Sales Cleaning & Visualization</h2>
-          <p class="desc">Cleaned, transformed, and visualized sales data to highlight key patterns.</p>
-          <ul class="tags">
-            <li>SQL</li><li>Data Cleaning</li><li>Tableau</li><li>Storytelling</li>
-          </ul>
-        </div>
-        <div class="cta" aria-hidden="true" title="Open"><span class="icon">↗</span></div>
-      </a>
-    </article>
-
-    <!-- Duplicate/modify more cards as needed -->
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <small>© <span id="year"></span> Rishitha Dubbaka</small>
-    <div class="footer-links">
-      <a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="brand" href="#about">Rishitha Dubbaka</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about"  class="active">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  </div>
-</footer>
-<script src="script.js"></script>
+  </header>
+
+  <!-- ===== About (first section shown on open) ===== -->
+  <main>
+    <section id="about" class="wrap">
+      <div class="intro">
+        <h1>About</h1>
+        <p class="muted">I build practical, maintainable solutions—clean data work, clear dashboards, and small automations.</p>
+      </div>
+
+      <div class="about">
+        <div class="bio">
+          <h2>Hi, I’m Rishitha 👋</h2>
+          <p>Intern focused on learning fast and shipping useful tools. I enjoy turning messy inputs into simple, reliable outputs.</p>
+          <div class="highlights" style="margin-top:10px">
+            <span class="chip">Tableau</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Python</span>
+            <span class="chip">Dashboard Design</span>
+            <span class="chip">Automation</span>
+          </div>
+          <p style="margin-top:14px" class="muted">Currently based in Cincinnati, OH.</p>
+          <p style="margin-top:14px">
+            <a class="btn" href="#work" title="See my work">See Work ↓</a>
+          </p>
+        </div>
+
+        <!-- Replace this with your photo if you have one -->
+        <div class="avatar">
+          <div>🖼 Add <code>assets/me.jpg</code><br/>and replace this box with an image</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Work ===== -->
+    <section id="work" class="wrap">
+      <div class="intro">
+        <h2>Work</h2>
+        <p class="muted">A selection of projects. Click any card to open its URL.</p>
+      </div>
+
+      <div class="grid" role="list">
+        <!-- Card 1 -->
+        <article class="card" role="listitem">
+          <a class="project-link" href="https://example.com/project-1" target="_blank" rel="noopener noreferrer" aria-label="Open Risk Insights Dashboard (opens in new tab)">
+            <div class="thumb">
+              <!-- Replace with: <img src="assets/project-1.jpg" alt="Screenshot of Risk Insights Dashboard" /> -->
+              <span>Project Image</span>
+            </div>
+            <div class="content">
+              <h3 class="title">Risk Insights Dashboard</h3>
+              <p class="desc">Interactive portfolio risk highlights with drill‑downs and exports.</p>
+              <ul class="tags"><li>Tableau</li><li>Financial Analytics</li><li>SQL</li><li>Data Viz</li></ul>
+            </div>
+            <div class="cta"><span class="go" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" role="listitem">
+          <a class="project-link" href="https://example.com/project-2" target="_blank" rel="noopener noreferrer" aria-label="Open Superstore Sales Analysis (opens in new tab)">
+            <div class="thumb">
+              <!-- <img src="assets/project-2.jpg" alt="Superstore dashboard preview" /> -->
+              <span>Project Image</span>
+            </div>
+            <div class="content">
+              <h3 class="title">Superstore Sales Analysis</h3>
+              <p class="desc">Trends, segments, and profitability summarized in a tidy dashboard.</p>
+              <ul class="tags"><li>Tableau</li><li>Dashboard Design</li><li>Excel</li><li>Sales Analytics</li></ul>
+            </div>
+            <div class="cta"><span class="go" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" role="listitem">
+          <a class="project-link" href="https://example.com/project-3" target="_blank" rel="noopener noreferrer" aria-label="Open Car Sales Cleaning & Visualization (opens in new tab)">
+            <div class="thumb">
+              <!-- <img src="assets/project-3.jpg" alt="Car sales visualization snapshot" /> -->
+              <span>Project Image</span>
+            </div>
+            <div class="content">
+              <h3 class="title">Car Sales Cleaning & Visualization</h3>
+              <p class="desc">Data cleaning and SQL transformations feeding a compact Tableau story.</p>
+              <ul class="tags"><li>SQL</li><li>Data Cleaning</li><li>Tableau</li><li>Storytelling</li></ul>
+            </div>
+            <div class="cta"><span class="go" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <!-- Duplicate more cards as needed -->
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="wrap">
+      <div class="intro">
+        <h2>Contact</h2>
+        <p class="muted">Send a note via the form or connect directly.</p>
+      </div>
+
+      <div class="contact">
+        <!-- Works automatically on Netlify if you deploy there -->
+        <form name="contact" method="POST" data-netlify="true" class="form">
+          <input type="hidden" name="form-name" value="contact" />
+          <label>
+            <span>Name</span>
+            <input name="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn">Send</button>
+        </form>
+
+        <div class="links">
+          <strong>Also:</strong>
+          <a href="mailto:you@example.com">you@example.com</a>
+          <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="year"></span> Rishitha Dubbaka</small>
+      <div class="links">
+        <a href="#about">Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth-scroll is CSS-based; this adds active-link highlight (scroll spy)
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav a')];
+
+    const onIntersect = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    };
+
+    const obs = new IntersectionObserver(onIntersect, {
+      rootMargin: '-40% 0px -50% 0px', threshold: 0.1
+    });
+    sections.forEach(sec => obs.observe(sec));
+
+    // If user arrives with a hash, ensure we respect sticky header offset
+    window.addEventListener('load', () => {
+      if (location.hash) {
+        const el = document.querySelector(location.hash);
+        if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    });
+
+    // Basic smooth scroll fallback for older Safari if needed
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id.length > 1) {
+          const el = document.querySelector(id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, '', id);
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-``
