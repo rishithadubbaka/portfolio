@@ -1,3 +1,6 @@
+/* ================================
+   Global design tokens
+   ================================ */
 :root{
   --bg:#0b0f19;
   --surface:#111827;
@@ -10,10 +13,14 @@
   --radius:14px;
   --shadow:0 10px 30px rgba(0,0,0,.25);
   --maxw:1100px;
+
+  /* Header height for anchor offsets (JS will keep this in sync) */
+  --header-h: 76px;
 }
 
 *{box-sizing:border-box}
 html,body{margin:0}
+html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
@@ -21,6 +28,7 @@ body{
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 
+/* Layout helpers */
 .wrap{max-width:var(--maxw); margin:0 auto; padding:18px 20px}
 .muted{color:var(--muted)}
 .lead{color:var(--muted); font-size:1.05rem}
@@ -29,7 +37,9 @@ body{
 a{color:var(--accent); text-decoration:none}
 a:hover{text-decoration:underline}
 
-/* Header */
+/* ================================
+   Header (sticky)
+   ================================ */
 .site-header{
   position:sticky; top:0; z-index:10;
   background:rgba(11,15,25,.55); backdrop-filter:blur(10px);
@@ -39,16 +49,33 @@ a:hover{text-decoration:underline}
 .nav a{margin-left:18px; color:var(--muted)}
 .nav a.active, .nav a:hover{color:var(--text)}
 
-/* Footer */
+/* Anchor offset so headings never hide under header */
+section[id]{
+  /* Leaves space equal to header height + a small cushion */
+  scroll-margin-top: calc(var(--header-h) + 14px);
+}
+
+/* Optional subtle spacing so the heading has breathing room when scrolled to */
+#about, #work, #contact{
+  padding-top: 6px;
+}
+
+/* ================================
+   Footer
+   ================================ */
 .site-footer{border-top:1px solid var(--border); margin-top:40px}
 .site-footer .wrap{display:flex; align-items:center; justify-content:space-between; gap:14px}
 .footer-links a{margin-left:12px}
 
-/* Intro section */
+/* ================================
+   Intro / Headings
+   ================================ */
 .intro{margin:16px 0 10px}
 .intro h1{margin:.2rem 0 .4rem; font-size:clamp(26px, 3vw, 34px)}
 
-/* Grid of cards */
+/* ================================
+   Work Grid
+   ================================ */
 .grid{
   display:grid; gap:22px; margin:18px 0 40px;
   grid-template-columns:repeat(3,1fr);
@@ -82,7 +109,9 @@ a:hover{text-decoration:underline}
 }
 .icon:hover{filter:brightness(.98)}
 
-/* Forms */
+/* ================================
+   Forms (Contact)
+   ================================ */
 .form{display:grid; gap:12px; margin:16px 0}
 .form label{display:grid; gap:6px; color:#c7d0dd}
 .form input,.form textarea{
@@ -92,7 +121,17 @@ a:hover{text-decoration:underline}
 .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:#1a2440; color:var(--text)}
 .btn.primary{background:linear-gradient(135deg, var(--accent), #3f7bfd); color:white; border-color:#3f7bfd}
 
-/* Light mode (system) */
+/* ================================
+   Mobile-specific header height
+   (so anchor landing is perfect on phones)
+   ================================ */
+@media (max-width: 640px){
+  :root{ --header-h: 64px; }
+}
+
+/* ================================
+   Light mode (system)
+   ================================ */
 @media (prefers-color-scheme: light){
   body{background:#f6f8fc; color:#0b0f19}
   .site-header{background:#ffffffd9; border-bottom:1px solid #e6eaf2}
@@ -100,5 +139,6 @@ a:hover{text-decoration:underline}
   .nav a.active,.nav a:hover{color:#0b0f19}
   .muted{color:#506075}
   .form input,.form textarea{background:#fff; color:#0b0f19; border-color:#e6eaf2}
+
+  /* Cards in light mode already look good; keep defaults */
 }
-``
