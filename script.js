@@ -94,7 +94,7 @@ if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+    fetch("https://script.google.com/macros/s/AKfycbyuD8TlKJ3eve1RRE_0RVZybOe9Zb98qc9QYvVdYAwihxHMMkB-QAaWA-z1HAtjjjBG-Q/exec", {
       method: "POST",
       body: new FormData(contactForm),
     })
