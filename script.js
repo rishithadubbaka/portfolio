@@ -123,19 +123,15 @@ if (contactForm) {
     }
 
     try {
-      const resp = await fetch(GAS_ACTION_URL, {
+      // IMPORTANT: use no-cors so the browser doesn't block on CORS
+      await fetch(GAS_ACTION_URL, {
         method: 'POST',
-        mode: 'cors',          // requires CORS headers from GAS
-        body: new FormData(contactForm), // do NOT set Content-Type manually
+        mode: 'no-cors',
+        body: new FormData(contactForm), // don't set Content-Type manually
       });
 
-      if (!resp.ok) {
-        const text = await resp.text().catch(() => '');
-        throw new Error(`Server responded ${resp.status}. ${text}`);
-      }
-
-      // Optional: const data = await resp.json().catch(() => ({}));
-
+      // We can’t read the response in no-cors mode, but if we got here without throw,
+      // we assume success (the Sheet shows the row anyway).
       contactForm.style.display = 'none';
       if (successMessage) successMessage.style.display = 'block';
     } catch (err) {
