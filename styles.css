@@ -65,7 +65,7 @@ a:hover{text-decoration:underline}
 .project-link{display:grid; grid-template-rows:auto 1fr auto; height:100%; color:inherit; text-decoration:none}
 .project-link:hover .title{text-decoration:underline}
 .thumb{margin:0; background:#f5f7fb; border-bottom:1px solid #edf0f6}
-.thumb img{width:100%; height:220px; object-fit:cover; display:block}
+.thumb img{width:100%; height:160px; object-fit:cover; display:block}
 .content{padding:16px 18px}
 .title{margin:6px 0 6px; font-size:1.1rem}
 .desc{margin:0 0 10px; color:#445063}
