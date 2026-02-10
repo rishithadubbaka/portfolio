@@ -86,31 +86,26 @@ window.addEventListener('load', () => {
   handleInitialLoad();
 });
 window.addEventListener('resize', updateHeaderVar);
-// ========== Contact Form (Netlify success message) ==========
-const contactForm = document.getElementById('contact-form');
-const successMessage = document.getElementById('form-success');
+// ========== Contact Form (Google Apps Script) ==========
+const contactForm = document.getElementById("contact-form");
+const successMessage = document.getElementById("form-success");
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const formData = new FormData(contactForm);
-
-    fetch('/', {
-      method: 'POST',
-      body: formData,
+    fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      body: new FormData(contactForm),
     })
       .then(() => {
-        contactForm.style.display = 'none';
-        if (successMessage) {
-          successMessage.style.display = 'block';
-        }
+        contactForm.style.display = "none";
+        successMessage.style.display = "block";
       })
       .catch(() => {
-        alert('Something went wrong. Please try again.');
+        alert("Something went wrong. Please try again.");
       });
   });
 }
-
 ``
 
