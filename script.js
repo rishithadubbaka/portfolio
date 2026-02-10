@@ -2,6 +2,7 @@
 const header = document.querySelector('.site-header');
 const navLinks = Array.from(document.querySelectorAll('.nav a'));
 const sections = Array.from(document.querySelectorAll('main section[id]'));
+
 const setYear = () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
@@ -17,14 +18,21 @@ function updateHeaderVar() {
 // Smooth scroll that accounts for sticky header height precisely
 function smoothScrollTo(el) {
   if (!el) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const top = el.getBoundingClientRect().top + window.pageYOffset;
   const offset = (header?.offsetHeight || 80) + 12; // 12px breathing room
-  window.scrollTo({ top: Math.max(top - offset, 0), behavior: 'smooth' });
+  const targetTop = Math.max(top - offset, 0);
+
+  if (prefersReducedMotion) {
+    window.scrollTo(0, targetTop);
+  } else {
+    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+  }
 }
 
 // Replace default hash jumping with our offset scroll
 function bindAnchorClicks() {
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
       if (!id || id === '#') return;
@@ -32,7 +40,9 @@ function bindAnchorClicks() {
       if (el) {
         e.preventDefault();
         smoothScrollTo(el);
-        history.pushState(null, '', id);
+        if (location.hash !== id) {
+          history.pushState(null, '', id);
+        }
       }
     });
   });
@@ -40,19 +50,24 @@ function bindAnchorClicks() {
 
 // Highlight the active nav link based on what’s in view
 function setupScrollSpy() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-    });
-  }, {
-    // Center-biased so the active link changes when the middle of a section is on screen
-    rootMargin: '-45% 0px -45% 0px',
-    threshold: 0.01
-  });
+  if (!('IntersectionObserver' in window)) return;
 
-  sections.forEach(sec => observer.observe(sec));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+      });
+    },
+    {
+      // Center-biased so the active link changes when the middle of a section is on screen
+      rootMargin: '-45% 0px -45% 0px',
+      threshold: 0.01,
+    }
+  );
+
+  sections.forEach((sec) => observer.observe(sec));
 }
 
 function handleInitialLoad() {
@@ -61,9 +76,11 @@ function handleInitialLoad() {
     history.scrollRestoration = 'manual';
   }
 
+  // Ensure var is set before we scroll
+  updateHeaderVar();
+
   // If there is a hash, honor it; otherwise open at About (top of the page)
   const hash = location.hash;
-  updateHeaderVar(); // ensure var is set before we scroll
   if (hash) {
     const el = document.querySelector(hash);
     if (el) {
@@ -73,8 +90,8 @@ function handleInitialLoad() {
     }
   }
 
-  // No hash — make sure we start at the beginning
-  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  // No hash — make sure we start at the beginning (avoid non-standard 'instant')
+  window.scrollTo(0, 0);
 }
 
 // Initialize
@@ -86,26 +103,49 @@ window.addEventListener('load', () => {
   handleInitialLoad();
 });
 window.addEventListener('resize', updateHeaderVar);
+
 // ========== Contact Form (Google Apps Script) ==========
-const contactForm = document.getElementById("contact-form");
-const successMessage = document.getElementById("form-success");
+const contactForm = document.getElementById('contact-form');
+const successMessage = document.getElementById('form-success');
+
+const GAS_ACTION_URL = 'https://script.google.com/macros/s/AKfycbwvFIovlAv204Qn_g3QpXSMXmlefdidLI4WF0Lia9aTtBYOqcXR5eUs9FZX_mCK50IrKQ/exec';
 
 if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbyuD8TlKJ3eve1RRE_0RVZybOe9Zb98qc9QYvVdYAwihxHMMkB-QAaWA-z1HAtjjjBG-Q/exec", {
-      method: "POST",
-      body: new FormData(contactForm),
-    })
-      .then(() => {
-        contactForm.style.display = "none";
-        successMessage.style.display = "block";
-      })
-      .catch(() => {
-        alert("Something went wrong. Please try again.");
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    try {
+      const resp = await fetch(GAS_ACTION_URL, {
+        method: 'POST',
+        mode: 'cors',          // requires CORS headers from GAS
+        body: new FormData(contactForm), // do NOT set Content-Type manually
       });
+
+      if (!resp.ok) {
+        const text = await resp.text().catch(() => '');
+        throw new Error(`Server responded ${resp.status}. ${text}`);
+      }
+
+      // Optional: const data = await resp.json().catch(() => ({}));
+
+      contactForm.style.display = 'none';
+      if (successMessage) successMessage.style.display = 'block';
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText || 'Send';
+      }
+    }
   });
 }
-``
-
