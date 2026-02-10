@@ -386,53 +386,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Smooth-scroll is CSS-based; this adds active-link highlight (scroll spy)
-    const sections = [...document.querySelectorAll('main section[id]')];
-    const navLinks = [...document.querySelectorAll('.nav a')];
-
-    const onIntersect = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-        }
-      });
-    };
-
-    const obs = new IntersectionObserver(onIntersect, {
-      rootMargin: '-40% 0px -50% 0px', threshold: 0.1
-    });
-    sections.forEach(sec => obs.observe(sec));
-
-    // If user arrives with a hash, ensure we respect sticky header offset
-    window.addEventListener('load', () => {
-      if (location.hash) {
-        const el = document.querySelector(location.hash);
-        if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
-      }
-    });
-
-    // Basic smooth scroll fallback for older Safari if needed
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        if (id.length > 1) {
-          const el = document.querySelector(id);
-          if (el) {
-            e.preventDefault();
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            history.pushState(null, '', id);
-          }
-        }
-      });
-    });
-    
-  </script>
   <script src="script.js"></script>
 </body>
 </html>
