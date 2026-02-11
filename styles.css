@@ -80,6 +80,10 @@ body{
   border: 1px solid #e0e7ff;
 }
 
+.about {
+  margin-top: 24px;   /* adds clean space above the About section */
+}
+
 /* Main content blocks */
 .content .block{
   border: 1px solid var(--border);
