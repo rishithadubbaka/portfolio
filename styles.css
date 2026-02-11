@@ -3,12 +3,10 @@
   --bg-alt:#0f152b;
   --text:#E5E7EB;
   --muted:#9CA3AF;
-  --card:#111933;
-  --border: #1f2a4b;
   --accent:#6366F1;        /* indigo */
   --accent-2:#22D3EE;      /* cyan */
-  --chip-bg:#111827;
   --tag:#cbd5e1;
+  --rule:#1d2746;          /* subtle divider */
   color-scheme: dark light;
 }
 
@@ -18,10 +16,8 @@
     --bg-alt:#ffffff;
     --text:#0f172a;
     --muted:#64748b;
-    --card:#ffffff;
-    --border:#e5e7eb;
-    --chip-bg:#f1f5f9;
     --tag:#334155;
+    --rule:#e5e7eb;
   }
 }
 
@@ -31,97 +27,90 @@ body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
   background: linear-gradient(120deg, var(--bg), var(--bg-alt));
   color: var(--text);
-  line-height:1.6;
+  line-height:1.7;
 }
 
+/* Layout: two columns on desktop, single column on mobile */
 .page{
-  max-width: 1100px;
-  margin: 40px auto;
+  max-width: 980px;
+  margin: 48px auto;
   padding: 0 20px;
   display:grid;
-  grid-template-columns: 320px 1fr;
-  gap: 28px;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
 }
 
+/* Sidebar (no card chrome) */
 .sidebar{ position: sticky; top: 24px; height: fit-content; }
 
-.card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-  margin-bottom: 18px;
-}
-
-/* avatar keeps its circle in the sidebar; project thumbs become rounded squares below */
-.profile .avatar{
-  width: 96px; height: 96px;
-  border-radius: 50%;
-  object-fit: cover; display:block;
-  border: 2px solid var(--border);
+/* Headings + text rhythm */
+h1,h2,h3{ margin:0; }
+h2{
+  font-size:1.15rem;
+  letter-spacing:.2px;
   margin-bottom: 8px;
 }
+.section{ margin-bottom: 36px; }
+.section + .section{ margin-top: 8px; }
 
-.name{ font-size: 1.5rem; margin: 6px 0 0; }
-.role{ margin: 4px 0; color: var(--muted); }
-.location{ display:flex; align-items:center; gap:8px; color: var(--muted); margin: 6px 0 10px; }
+/* Subtle divider lines (instead of cards) */
+.rule{
+  border:0; height:1px; background: var(--rule); margin: 16px 0 22px;
+}
+
+/* Profile block (no background, just spacing) */
+.name{ font-size: 1.6rem; font-weight: 700; margin-top: 8px; }
+.role{ margin: 6px 0; color: var(--muted); }
+.location{ display:flex; align-items:center; gap:8px; color: var(--muted); margin: 4px 0 12px; }
 .icon{ width:16px; height:16px; opacity: .8; }
+.avatar{
+  width: 96px; height: 96px; border-radius: 12px; object-fit: cover; display:block;
+}
 
-.links{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+/* Inline contact “pills” without heavy borders */
+.links{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
 .chip{
   display:inline-flex; align-items:center; gap:8px;
   padding:8px 10px; border-radius:999px; font-size:.9rem;
-  background: var(--chip-bg); color: var(--text); text-decoration:none;
-  border:1px solid var(--border);
+  color: var(--text); text-decoration:none;
+  border:1px solid transparent;
+  background: color-mix(in oklab, var(--bg-alt) 70%, black 30%);
 }
 .chip:hover{
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 25%, transparent);
 }
 
-h2{ font-size:1.05rem; letter-spacing:.25px; margin: 0 0 10px; }
-
+/* Skills as lightweight tags */
 .tags{ list-style:none; padding:0; margin:10px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
 .tags li{
-  padding:6px 10px; border:1px solid var(--border);
-  border-radius:999px; background: var(--chip-bg); color:var(--tag); font-size:.85rem;
+  padding:4px 10px; border-radius:999px;
+  background: color-mix(in oklab, var(--bg-alt) 80%, black 20%);
+  color:var(--tag); font-size:.85rem;
 }
-.tags.compact li{ padding:4px 8px; font-size:.8rem; }
 
-.content .section{ margin-bottom: 26px; }
-.section-title{
-  font-family:"Source Serif 4", Georgia, serif;
-  font-weight:700; font-size:1.35rem;
-  margin:0 0 14px; letter-spacing:.2px;
-}
+/* Content sections */
+.content .section{ margin-bottom: 40px; }
 
 /* =========================
-   PROJECTS: STACKED CARDS
+   PROJECTS (stacked list)
    ========================= */
 .project{
-  /* Stacked one after another (each article is a block) */
   display:grid;
-  grid-template-columns: 140px 1fr;  /* thumbnail left, text right */
+  grid-template-columns: 160px 1fr;  /* image left, text right */
   gap:18px;
-  background: var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding: 14px;
-  margin-bottom: 16px;               /* space between stacked items */
+  margin-bottom: 26px;               /* spacing between projects */
 }
 
-/* Square thumbnail with curved edges */
+/* Square, rounded-corner thumbnails (no circle) */
 .thumb{
   width:100%;
-  aspect-ratio: 1 / 1;               /* forces square */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius:14px;                 /* curved corners (not circle) */
-  border:1px solid var(--border);
+  border-radius:14px;
 }
 
-/* Title is the link — style for clarity & focus */
-.project-body h3{ margin: 0 0 6px; font-size:1.12rem; line-height:1.35; }
+/* Title is the link */
+.project-title{ margin:0 0 6px; font-size:1.15rem; line-height:1.35; }
 .project-title a{
   color: var(--text);
   text-decoration: none;
@@ -135,39 +124,23 @@ h2{ font-size:1.05rem; letter-spacing:.25px; margin: 0 0 10px; }
   outline: 0;
 }
 
-.links-inline a{ color: var(--accent); text-decoration: none; font-weight: 600; }
-.links-inline a:hover{ text-decoration: underline; }
-.links-inline span{ color: var(--muted); margin: 0 6px; }
+/* Project meta */
+.project .tags{ margin-top: 2px; }
+.project p{ margin: 10px 0 0; color: var(--text); }
 
-/* Experience cards */
-.xp{
-  background: var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:14px;
-  margin-bottom: 12px;
-}
+/* Experience list (simple, text-first) */
+.xp{ margin-bottom: 22px; }
 .xp h3{ margin:0 0 4px; font-size:1.05rem; }
-.muted{ color: var(--muted); margin:0 0 10px; }
+.muted{ color: var(--muted); margin:0 0 8px; }
 .bullets{ margin:0; padding-left: 18px; }
 
-.primary-btn{
-  display:inline-block; margin-top:8px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color:white; text-decoration:none; padding:10px 14px; border-radius:12px; font-weight:700;
-  border: 1px solid color-mix(in oklab, var(--accent) 50%, black);
-}
-.primary-btn:hover{ opacity:.95; transform: translateY(-1px); transition: .15s ease-in-out; }
-
-.footer{ color: var(--muted); margin: 16px 0 40px; }
+/* Footer */
+.footer{ color: var(--muted); margin: 24px 0 48px; }
 
 /* Responsive */
-@media (max-width: 980px){
-  .page{ grid-template-columns: 1fr; }
+@media (max-width: 960px){
+  .page{ grid-template-columns: 1fr; gap: 28px; }
   .sidebar{ position: static; }
   .project{ grid-template-columns: 1fr; }
-  .thumb{
-    height: 200px;         /* nice visual balance on small screens */
-    aspect-ratio: auto;    /* allow fixed height on mobile */
-  }
+  .thumb{ height: 220px; aspect-ratio: auto; }
 }
