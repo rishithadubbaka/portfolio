@@ -3,139 +3,164 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rishitha Dubbaka · Portfolio</title>
-  <meta name="description" content="Data & Analytics portfolio by Rishitha Dubbaka." />
+  <title>Rishitha Dubbaka – Portfolio</title>
+  <meta name="description" content="Data analytics & visualization projects, experience, and skills." />
 
-  <!-- Inter font (clean sans like the reference) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Icons: Feather -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page">
-
     <!-- Sidebar -->
     <aside class="sidebar">
-      <header class="profile">
+      <div class="profile">
         <img src="assets/avatar.jpg" alt="Profile photo" class="avatar" />
         <h1 class="name">Rishitha Dubbaka</h1>
-        <p class="role">Data / Analytics</p>
-        <p class="meta">Based in Cincinnati, OH</p>
+        <p class="role">Data Analyst</p>
+        <p class="location"><i data-feather="map-pin" class="icon-sm"></i> Cincinnati, OH</p>
 
-        <div class="contact">
-          <a class="btn" href="mailto:youremail@example.com">Email me</a>
-          <a class="iconlink" href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="iconlink" href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+        <div class="socials">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><i data-feather="linkedin"></i></a>
+          <a href="https://github.com/" target="_blank" rel="noopener"><i data-feather="github"></i></a>
+          <a href="mailto:you@example.com"><i data-feather="mail"></i></a>
         </div>
-      </header>
 
-      <section class="about">
-        <h2>About</h2>
-        <p>
-          Data and analytics practitioner focused on turning messy datasets into clean,
-          decision-ready insights. I enjoy modeling, visualization, and building small tools
-          that make teams faster.
-        </p>
-      </section>
+        <div class="cta-row">
+          <a class="btn btn-outline" href="mailto:you@example.com">email me</a>
+          <a class="btn btn-light" href="assets/Rishitha_Dubbaka_Resume.pdf" target="_blank" rel="noopener">resume</a>
+        </div>
 
-      <section class="skills">
-        <h2>Skills</h2>
-        <ul class="tags">
-          <li>SQL</li>
-          <li>Python</li>
-          <li>Pandas</li>
-          <li>Tableau</li>
-          <li>Excel</li>
-          <li>Statistics</li>
-        </ul>
-      </section>
-
-      <section class="experience">
-        <h2>Experience</h2>
-        <article class="xp">
-          <header>
-            <h3>Intern — Great American Insurance Group</h3>
-            <div class="xp-meta">2025–present · Cincinnati, OH</div>
-          </header>
+        <div class="about">
+          <h2 class="section-subtitle">About</h2>
           <p>
-            Supported data initiatives across risk solutions: built SQL pipelines, automated
-            workbook refreshes, and created dashboards to monitor key metrics.
+            Quantitatively minded analyst focused on building stakeholder‑ready insights, with experience
+            in SQL, Python, and data visualization to support strategy and decision‑making.
           </p>
-          <ul class="tags compact">
-            <li>SQL</li>
-            <li>Python</li>
-            <li>Tableau</li>
-          </ul>
-        </article>
-      </section>
+        </div>
+
+        <div class="skills">
+          <h2 class="section-subtitle">Skills</h2>
+          <div class="pill-row">
+            <span class="pill">SQL</span>
+            <span class="pill">Python</span>
+            <span class="pill">R</span>
+            <span class="pill">Tableau</span>
+            <span class="pill">Excel</span>
+            <span class="pill">Statistical modeling</span>
+            <span class="pill">Sampling techniques</span>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <!-- Main content -->
     <main class="content">
-      <section class="projects">
-        <h2>Projects</h2>
+      <!-- Projects: stacked, no card style -->
+      <section class="block projects-stack" id="projects">
+        <h2 class="section-title">Projects</h2>
 
-        <!-- Project (stacked style; title links out) -->
-        <article class="project">
-          <img class="thumb" src="assets/proj-airbnb.jpg" alt="Airbnb pricing project thumbnail">
-          <div class="proj-body">
-            <h3 class="proj-title">
-              <a href="https://example.com/airbnb-pricing" target="_blank" rel="noopener">
-                Airbnb Listings Price Prediction
-              </a>
+        <article class="project-row">
+          <a class="project-thumb" href="#" aria-label="AirBnB listings price prediction project">
+            <img src="assets/project-airbnb.jpg" alt="Project cover: AirBnB price prediction" />
+          </a>
+          <div class="project-body">
+            <h3 class="project-title">
+              <a href="#" title="Open project details">AirBnB listings price prediction</a>
             </h3>
-            <ul class="tags compact">
-              <li>Python</li><li>scikit‑learn</li><li>SQL</li>
-            </ul>
-            <p class="proj-desc">
-              End‑to‑end pipeline: cleaning, feature engineering (seasonality, location grids),
-              model selection, and error analysis; shipped as a lightweight API for batch scoring.
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Matlab</span>
+            </div>
+            <p class="project-text">
+              Predicts city‑level AirBnB prices to surface neighborhoods likely to see short‑term demand growth.
+              The model incorporates location features, host history, listing characteristics, seasonal effects,
+              and external signals for robust generalization.
             </p>
+            <a class="readmore" href="#" title="Read more about this project">Read more →</a>
           </div>
         </article>
 
-        <article class="project">
-          <img class="thumb" src="assets/proj-spotify.jpg" alt="Audio visualization project thumbnail">
-          <div class="proj-body">
-            <h3 class="proj-title">
-              <a href="https://example.com/spotify-visuals" target="_blank" rel="noopener">
-                Spotify Visual Data Art
-              </a>
+        <article class="project-row">
+          <a class="project-thumb" href="#" aria-label="Spotify visual data art project">
+            <img src="assets/project-spotify.jpg" alt="Project cover: Spotify visual data art" />
+          </a>
+          <div class="project-body">
+            <h3 class="project-title">
+              <a href="#" title="Open project details">Spotify visual data art</a>
             </h3>
-            <ul class="tags compact">
-              <li>Python</li><li>JavaScript</li><li>D3.js</li>
-            </ul>
-            <p class="proj-desc">
-              Generated loopable animations from audio features (tempo, timbre, valence).
-              Built a small tool for batch rendering visuals for playlists.
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">SQL</span>
+            </div>
+            <p class="project-text">
+              Generates dynamic audio‑reactive visuals for Spotify tracks. Track features are mapped to motion and
+              color palettes to create engaging scenes rendered in the browser.
             </p>
+            <a class="readmore" href="#" title="Read more about this project">Read more →</a>
           </div>
         </article>
 
-        <article class="project">
-          <img class="thumb" src="assets/proj-topomap.jpg" alt="Topographic mapping project thumbnail">
-          <div class="proj-body">
-            <h3 class="proj-title">
-              <a href="https://example.com/topographic-extraction" target="_blank" rel="noopener">
-                Automatic Valley Floor Extraction from DEMs
-              </a>
-            </h3>
-            <ul class="tags compact">
-              <li>Python</li><li>GDAL</li><li>Raster</li>
-            </ul>
-            <p class="proj-desc">
-              Tools to extract valley floor boundaries from elevation models, with a
-              geomorphic classification prototype and evaluation notebooks.
-            </p>
-          </div>
-        </article>
+        <!-- Duplicate <article class="project-row"> for more projects -->
       </section>
 
-      <section class="education">
-        <h2>Education</h2>
-        <p><strong>Your University</strong> — B.S. / M.S. Field · 202X</p>
+      <!-- Experience -->
+      <section class="block" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-meta">Mar 2022 – now</div>
+            <div class="timeline-body">
+              <h3 class="timeline-title">Data Analyst at Amazon</h3>
+              <p class="timeline-text">
+                Led development of analytics strategies supporting business goals. Managed a team of analysts to ensure
+                data integrity, accuracy, and timeliness. Built executive KPIs and dashboards that improved product
+                performance and forecasting accuracy.
+              </p>
+              <div class="pill-row compact">
+                <span class="pill">SQL</span><span class="pill">Python</span>
+                <span class="pill">Tableau</span><span class="pill">ETL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="block" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-meta">2018 – 2022</div>
+            <div class="timeline-body">
+              <h3 class="timeline-title">B.S. in Quantitative Economics</h3>
+              <p class="timeline-text">Coursework: Econometrics, Statistical Learning, Optimization.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Rishitha Dubbaka • All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Replace icons and update year
+    feather.replace();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
