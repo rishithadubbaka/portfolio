@@ -69,6 +69,10 @@ body{
   vertical-align: middle;
 }
 
+.socials a i.ai-medium-fill {
+  transform: translateY(-2px);
+}
+
 .cta-row{ display:flex; gap:8px; margin: 6px 0 16px; }
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -111,7 +115,7 @@ body{
 }
 
 .about {
-  margin-top: 28px;   /* adds clean space above the About section */
+  margin-top: 35px;   /* adds clean space above the About section */
 }
 
 .about .section-subtitle {
