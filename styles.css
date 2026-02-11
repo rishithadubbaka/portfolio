@@ -81,8 +81,13 @@ body{
 }
 
 .about {
-  margin-top: 24px;   /* adds clean space above the About section */
+  margin-top: 28px;   /* adds clean space above the About section */
 }
+
+.about .section-subtitle {
+  margin-bottom: 4px;   /* reduce space below "About" */
+}
+
 
 /* Main content blocks */
 .content .block{
