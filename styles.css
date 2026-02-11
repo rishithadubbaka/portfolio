@@ -1,84 +1,128 @@
-/* -------- Variables (use yours or keep these) -------- */
+/* ==== Theme & tokens (similar look: clean + blue accent) ==== */
 :root{
-  --bg: #f6f7fb;
-  --text: #0f172a;
-  --muted: #6b7280;
-  --panel: #ffffff;
-  --ring: #e5e7eb;
-  --accent: #6366f1; /* indigo */
-  --chip-bg: #eef2ff; /* indigo-50 */
-  --chip-text: #4338ca; /* indigo-700 */
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0b1020; --text:#E5E7EB; --muted:#9CA3AF; --panel:#0f152b; --ring:#1f2a4b;
-    --chip-bg:#1b2247; --chip-text:#a5b4fc; --accent:#8b93ff;
-    color-scheme: dark;
-  }
+  --bg: #ffffff;
+  --text: #111827;          /* near-black */
+  --muted: #6b7280;         /* gray-500 */
+  --divider: #e5e7eb;       /* gray-200 */
+  --accent: #3b82f6;        /* blue-500 for links and top line */
+  --accent-ink: #1e40af;    /* blue-800 for hover states */
+  --maxw: 800px;            /* comfortable measure */
 }
 
-body{ background: var(--bg); color: var(--text); }
-
-/* -------- Left Sidebar Panel -------- */
-.ls-panel{
-  position: sticky; top: 24px;
-  display: flex; flex-direction: column;
-  gap: 14px;
-  padding: 22px 22px 26px;
-  background: var(--panel);
-  border: 1px solid var(--ring);
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.06);
-  max-width: 420px;
+* { box-sizing: border-box; }
+html, body { padding: 0; margin: 0; }
+body {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Photo (rounded square) */
-.ls-photo{
-  width: 92px; height: 92px; border-radius: 14px; object-fit: cover; display:block;
-  border: 1px solid var(--ring);
+/* Top thin accent bar */
+.topbar {
+  height: 4px;
+  width: 100%;
+  background: var(--accent);
 }
 
-/* Identity text */
-.ls-name{ font-size: 1.7rem; font-weight: 800; margin: 4px 0 0; }
-.ls-role{ margin: 2px 0; color: var(--muted); }
-.ls-loc{ margin: 0 0 4px; color: var(--muted); }
-
-/* Social icons row + email pill */
-.ls-social{ display:flex; align-items:center; gap: 12px; margin: 6px 0 8px; flex-wrap: wrap; }
-.ls-icon{
-  width: 36px; height: 36px; display:grid; place-items:center;
-  color: var(--text); text-decoration:none;
-  border: 1px solid var(--ring); border-radius: 50%;
-  background: transparent; transition: transform .12s ease, color .12s ease, border-color .12s ease;
-}
-.ls-icon:hover{ transform: translateY(-1px); color: var(--accent); border-color: var(--accent); }
-
-.ls-email{
-  padding: 6px 12px; border-radius: 999px; text-decoration: none;
-  border: 1px solid var(--ring); color: var(--text);
-  background: transparent; font-size: .95rem;
-}
-.ls-email:hover{ border-color: var(--accent); color: var(--accent); }
-
-/* Block headings + paragraph rhythm */
-.ls-block{ margin-top: 6px; }
-.ls-subhead{
-  font-size: .95rem; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--muted); margin: 10px 0 6px;
-}
-.ls-text{ margin: 0; }
-
-/* Skill chips */
-.ls-tags{ list-style: none; margin: 8px 0 0; padding: 0; display:flex; flex-wrap:wrap; gap:10px; }
-.ls-tags li{
-  background: var(--chip-bg); color: var(--chip-text);
-  border-radius: 12px; padding: 6px 10px; font-weight: 600; font-size: .88rem;
-  box-shadow: 0 2px 10px rgba(99,102,241,.15);
+/* Layout containers */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px){
-  .ls-panel{ position: static; padding: 18px; border-radius: 16px; }
-  .ls-photo{ width: 84px; height: 84px; border-radius: 12px; }
+.site-header {
+  padding: 28px 0 8px 0;
+}
+.header-block { display: block; }
+.site-title {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+.site-subtitle {
+  color: var(--muted);
+  margin: 0 0 12px 0;
+}
+
+/* Chips for quick actions (text-only, no cards) */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.chip:hover, .chip:focus {
+  color: var(--accent-ink);
+  border-color: var(--accent-ink);
+}
+
+/* Sections */
+.section { padding: 28px 0; }
+.section + .section { border-top: 1px solid var(--divider); }
+.section-title {
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
+  color: var(--muted);
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* Project stack (no cards, just text + spacing) */
+.project {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--divider);
+}
+.project:last-of-type { border-bottom: none; }
+
+.project-title {
+  margin: 0 0 2px 0;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.project-title a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.35); /* soft blue underline */
+  transition: color 120ms ease, border-color 120ms ease;
+}
+.project-title a:hover, .project-title a:focus {
+  color: var(--accent-ink);
+  border-color: var(--accent-ink);
+}
+
+.project-meta {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.project-summary {
+  margin: 0 0 6px 0;
+}
+.project-bullets {
+  margin: 0;
+  padding-left: 18px;
+}
+.project-bullets li { margin: 4px 0; }
+
+/* Footer */
+.site-footer {
+  padding: 28px 0 60px 0;
+  color: var(--muted);
+  border-top: 1px solid var(--divider);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px){
+  .site-title { font-size: 1.7rem; }
+  .project-title { font-size: 1.1rem; }
 }
