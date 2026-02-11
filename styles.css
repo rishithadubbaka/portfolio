@@ -54,6 +54,20 @@ body{
 .socials{ display:flex; gap:12px; margin: 8px 0 12px; }
 .socials a{ color: var(--muted); transition: color .2s ease; }
 .socials a:hover{ color: var(--indigo); }
+/* Remove underline for icons */
+.socials a {
+  text-decoration: none !important;
+}
+
+/* Make font‑icon behave like SVG icons */
+.socials a i {
+  font-size: 28px;        /* match LinkedIn + GitHub (approx) */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
 
 .cta-row{ display:flex; gap:8px; margin: 6px 0 16px; }
 .btn{
