@@ -1,58 +1,84 @@
-/* Layout (keep your page grid if you already have one) */
-.page{
-  max-width: 980px;
-  margin: 48px auto;
-  padding: 0 20px;
-  display:grid;
-  grid-template-columns: 300px 1fr; /* left = sidebar, right = main (to add later) */
-  gap: 40px;
+/* -------- Variables (use yours or keep these) -------- */
+:root{
+  --bg: #f6f7fb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --panel: #ffffff;
+  --ring: #e5e7eb;
+  --accent: #6366f1; /* indigo */
+  --chip-bg: #eef2ff; /* indigo-50 */
+  --chip-text: #4338ca; /* indigo-700 */
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1020; --text:#E5E7EB; --muted:#9CA3AF; --panel:#0f152b; --ring:#1f2a4b;
+    --chip-bg:#1b2247; --chip-text:#a5b4fc; --accent:#8b93ff;
+    color-scheme: dark;
+  }
 }
 
-/* Sidebar — minimalist, no card chrome */
-.sidebar{ position: sticky; top: 24px; height: fit-content; }
+body{ background: var(--bg); color: var(--text); }
 
-/* Basic typography */
-h1,h2,h3{ margin:0; }
-.section{ margin-bottom: 28px; }
-h2{ font-size:1.15rem; letter-spacing:.2px; margin-bottom: 8px; }
-
-.rule{
-  border:0; height:1px; background: var(--rule, #1d2746);
-  margin: 16px 0 22px;
+/* -------- Left Sidebar Panel -------- */
+.ls-panel{
+  position: sticky; top: 24px;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  padding: 22px 22px 26px;
+  background: var(--panel);
+  border: 1px solid var(--ring);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.06);
+  max-width: 420px;
 }
 
-/* Identity */
-.avatar{
-  width: 96px; height: 96px;
-  border-radius: 12px;     /* rounded square image */
-  object-fit: cover; display:block;
+/* Photo (rounded square) */
+.ls-photo{
+  width: 92px; height: 92px; border-radius: 14px; object-fit: cover; display:block;
+  border: 1px solid var(--ring);
 }
-.name{ font-size: 1.6rem; font-weight: 700; margin-top: 10px; }
-.role{ margin: 6px 0; color: var(--muted); }
-.location{ color: var(--muted); margin: 2px 0 12px; }
 
-/* Contact chips (subtle, not card-like) */
-.links{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
-.chip{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 12px; border-radius:999px; font-size:.92rem;
+/* Identity text */
+.ls-name{ font-size: 1.7rem; font-weight: 800; margin: 4px 0 0; }
+.ls-role{ margin: 2px 0; color: var(--muted); }
+.ls-loc{ margin: 0 0 4px; color: var(--muted); }
+
+/* Social icons row + email pill */
+.ls-social{ display:flex; align-items:center; gap: 12px; margin: 6px 0 8px; flex-wrap: wrap; }
+.ls-icon{
+  width: 36px; height: 36px; display:grid; place-items:center;
   color: var(--text); text-decoration:none;
-  border:1px solid transparent;
-  background: color-mix(in oklab, var(--bg-alt) 80%, black 20%);
+  border: 1px solid var(--ring); border-radius: 50%;
+  background: transparent; transition: transform .12s ease, color .12s ease, border-color .12s ease;
 }
-.chip:hover{ border-color: var(--accent); }
+.ls-icon:hover{ transform: translateY(-1px); color: var(--accent); border-color: var(--accent); }
 
-/* Skills */
-.tags{ list-style:none; padding:0; margin:10px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
-.tags li{
-  padding:4px 10px; border-radius:999px;
-  background: color-mix(in oklab, var(--bg-alt) 85%, black 15%);
-  color: var(--tag);
-  font-size:.85rem;
+.ls-email{
+  padding: 6px 12px; border-radius: 999px; text-decoration: none;
+  border: 1px solid var(--ring); color: var(--text);
+  background: transparent; font-size: .95rem;
+}
+.ls-email:hover{ border-color: var(--accent); color: var(--accent); }
+
+/* Block headings + paragraph rhythm */
+.ls-block{ margin-top: 6px; }
+.ls-subhead{
+  font-size: .95rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin: 10px 0 6px;
+}
+.ls-text{ margin: 0; }
+
+/* Skill chips */
+.ls-tags{ list-style: none; margin: 8px 0 0; padding: 0; display:flex; flex-wrap:wrap; gap:10px; }
+.ls-tags li{
+  background: var(--chip-bg); color: var(--chip-text);
+  border-radius: 12px; padding: 6px 10px; font-weight: 600; font-size: .88rem;
+  box-shadow: 0 2px 10px rgba(99,102,241,.15);
 }
 
-/* Responsive */
-@media (max-width: 960px){
-  .page{ grid-template-columns: 1fr; gap: 28px; }
-  .sidebar{ position: static; }
+/* Responsive adjustments */
+@media (max-width: 640px){
+  .ls-panel{ position: static; padding: 18px; border-radius: 16px; }
+  .ls-photo{ width: 84px; height: 84px; border-radius: 12px; }
 }
