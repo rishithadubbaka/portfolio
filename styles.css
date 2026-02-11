@@ -144,7 +144,13 @@ body{
 .project-title a:hover{ color: var(--indigo); }
 
 .project-text{ color: #374151; margin-top: 8px; }
-.tag-row{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+.pill {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
 .readmore{
   color: var(--indigo); text-decoration: none; font-weight: 600;
   display:inline-block; margin-top: 8px;
