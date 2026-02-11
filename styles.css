@@ -85,7 +85,9 @@ body{
 }
 
 .about .section-subtitle {
-  margin-bottom: 2.5px;   /* reduce space below "About" */
+  margin-top: 4px;
+  margin-bottom: 2px;
+  /* reduce space below "About" */
 }
 
 
