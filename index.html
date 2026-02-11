@@ -1,133 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name – Portfolio</title>
+  <title>Rishitha Dubbaka · Portfolio</title>
+  <meta name="description" content="Data & Analytics portfolio by Rishitha Dubbaka." />
 
-  <!-- Typography (Inter) + sensible fallbacks -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Inter font (clean sans like the reference) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Personal portfolio of Your Name: projects, writing, and contact." />
 </head>
 <body>
-  <!-- Thin top accent rule -->
-  <div class="topbar" aria-hidden="true"></div>
+  <div class="page">
 
-  <header class="site-header container">
-    <div class="header-block">
-      <h1 class="site-title">Your Name</h1>
-      <p class="site-subtitle">Data / Analytics • Based in City, Country</p>
-      <nav class="actions">
-        <a class="chip" href="mailto:you@example.com" aria-label="Email">email</a>
-        <a class="chip" href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="chip" href="https://github.com/youruser" target="_blank" rel="noopener">GitHub</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <header class="profile">
+        <img src="assets/avatar.jpg" alt="Profile photo" class="avatar" />
+        <h1 class="name">Rishitha Dubbaka</h1>
+        <p class="role">Data / Analytics</p>
+        <p class="meta">Based in Cincinnati, OH</p>
 
-  <main class="container">
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <h2 class="section-title">About</h2>
-      <p>
-        Briefly describe what you do and what you’re interested in. Keep it concise and outcomes‑focused.
-        For example: I explore how data and simple models can unlock business insights. Particularly interested in forecasting,
-        experimentation, and elegant visualization.
-      </p>
-    </section>
+        <div class="contact">
+          <a class="btn" href="mailto:youremail@example.com">Email me</a>
+          <a class="iconlink" href="https://www.linkedin.com/in/your-handle/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="iconlink" href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </header>
 
-    <!-- PROJECTS (stacked, titles link directly to URLs) -->
-    <section id="projects" class="section">
-      <h2 class="section-title">Projects</h2>
-
-      <!-- Project 1 -->
-      <article class="project">
-        <header>
-          <h3 class="project-title">
-            <a href="https://example.com/your-project-1" target="_blank" rel="noopener">
-              AirBnB Listings Price Prediction
-            </a>
-          </h3>
-          <p class="project-meta">
-            2025 • Python, SQL, scikit‑learn
-          </p>
-        </header>
-        <p class="project-summary">
-          Built a regression model to estimate nightly prices from location, availability, and review features.
-          Emphasis on interpretable features and robust validation; reduced MAPE by 18% vs baseline.
+      <section class="about">
+        <h2>About</h2>
+        <p>
+          Data and analytics practitioner focused on turning messy datasets into clean,
+          decision-ready insights. I enjoy modeling, visualization, and building small tools
+          that make teams faster.
         </p>
-        <ul class="project-bullets">
-          <li>Feature pipeline with target leakage checks and nested CV.</li>
-          <li>Explainability using SHAP to guide pricing recommendations.</li>
-          <li>Deployed lightweight API for batch scoring.</li>
-        </ul>
-      </article>
+      </section>
 
-      <!-- Project 2 -->
-      <article class="project">
-        <header>
-          <h3 class="project-title">
-            <a href="https://example.com/your-project-2" target="_blank" rel="noopener">
-              Spotify Visual Data Art
-            </a>
-          </h3>
-          <p class="project-meta">
-            2024 • Python, SQL, JavaScript
+      <section class="skills">
+        <h2>Skills</h2>
+        <ul class="tags">
+          <li>SQL</li>
+          <li>Python</li>
+          <li>Pandas</li>
+          <li>Tableau</li>
+          <li>Excel</li>
+          <li>Statistics</li>
+        </ul>
+      </section>
+
+      <section class="experience">
+        <h2>Experience</h2>
+        <article class="xp">
+          <header>
+            <h3>Intern — Great American Insurance Group</h3>
+            <div class="xp-meta">2025–present · Cincinnati, OH</div>
+          </header>
+          <p>
+            Supported data initiatives across risk solutions: built SQL pipelines, automated
+            workbook refreshes, and created dashboards to monitor key metrics.
           </p>
-        </header>
-        <p class="project-summary">
-          Transformed audio features into generative visuals mapped to tempo and valence. Built an interactive page
-          to explore personal playlists with adjustable parameters.
-        </p>
-        <ul class="project-bullets">
-          <li>ETL pipeline to cache track features and reduce API calls.</li>
-          <li>Vector‑based rendering for crisp, fast visuals.</li>
-          <li>Accessible color palettes with high contrast.</li>
-        </ul>
-      </article>
+          <ul class="tags compact">
+            <li>SQL</li>
+            <li>Python</li>
+            <li>Tableau</li>
+          </ul>
+        </article>
+      </section>
+    </aside>
 
-      <!-- Project 3 -->
-      <article class="project">
-        <header>
-          <h3 class="project-title">
-            <a href="https://example.com/your-project-3" target="_blank" rel="noopener">
-              Customer Churn Signals
-            </a>
-          </h3>
-          <p class="project-meta">
-            2023 • Python, XGBoost, Dash
-          </p>
-        </header>
-        <p class="project-summary">
-          Modeled churn drivers and exposed an internal dashboard to surface high‑risk cohorts and recommended offers.
-        </p>
-        <ul class="project-bullets">
-          <li>Imbalanced learning with calibrated probabilities for action thresholds.</li>
-          <li>Segment‑level uplift estimation to prioritize retention spend.</li>
-        </ul>
-      </article>
-    </section>
+    <!-- Main content -->
+    <main class="content">
+      <section class="projects">
+        <h2>Projects</h2>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h2 class="section-title">Contact</h2>
-      <p>
-        I’m open to collaborations and interesting problems. Reach me at
-        <a href="mailto:you@example.com">you@example.com</a>.
-      </p>
-    </section>
-  </main>
+        <!-- Project (stacked style; title links out) -->
+        <article class="project">
+          <img class="thumb" src="assets/proj-airbnb.jpg" alt="Airbnb pricing project thumbnail">
+          <div class="proj-body">
+            <h3 class="proj-title">
+              <a href="https://example.com/airbnb-pricing" target="_blank" rel="noopener">
+                Airbnb Listings Price Prediction
+              </a>
+            </h3>
+            <ul class="tags compact">
+              <li>Python</li><li>scikit‑learn</li><li>SQL</li>
+            </ul>
+            <p class="proj-desc">
+              End‑to‑end pipeline: cleaning, feature engineering (seasonality, location grids),
+              model selection, and error analysis; shipped as a lightweight API for batch scoring.
+            </p>
+          </div>
+        </article>
 
-  <footer class="site-footer container">
-    <small>© <span id="year"></span> Your Name</small>
-  </footer>
+        <article class="project">
+          <img class="thumb" src="assets/proj-spotify.jpg" alt="Audio visualization project thumbnail">
+          <div class="proj-body">
+            <h3 class="proj-title">
+              <a href="https://example.com/spotify-visuals" target="_blank" rel="noopener">
+                Spotify Visual Data Art
+              </a>
+            </h3>
+            <ul class="tags compact">
+              <li>Python</li><li>JavaScript</li><li>D3.js</li>
+            </ul>
+            <p class="proj-desc">
+              Generated loopable animations from audio features (tempo, timbre, valence).
+              Built a small tool for batch rendering visuals for playlists.
+            </p>
+          </div>
+        </article>
 
-  <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+        <article class="project">
+          <img class="thumb" src="assets/proj-topomap.jpg" alt="Topographic mapping project thumbnail">
+          <div class="proj-body">
+            <h3 class="proj-title">
+              <a href="https://example.com/topographic-extraction" target="_blank" rel="noopener">
+                Automatic Valley Floor Extraction from DEMs
+              </a>
+            </h3>
+            <ul class="tags compact">
+              <li>Python</li><li>GDAL</li><li>Raster</li>
+            </ul>
+            <p class="proj-desc">
+              Tools to extract valley floor boundaries from elevation models, with a
+              geomorphic classification prototype and evaluation notebooks.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="education">
+        <h2>Education</h2>
+        <p><strong>Your University</strong> — B.S. / M.S. Field · 202X</p>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
