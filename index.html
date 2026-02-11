@@ -1,53 +1,133 @@
-<!-- LEFT SIDEBAR -->
-<aside class="ls-panel" aria-label="Profile">
-  <!-- Photo -->
-  <img src="assets/headshot.jpg" alt="Portrait of Rishitha Dubbaka" class="ls-photo" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Portfolio</title>
 
-  <!-- Identity -->
-  <h1 class="ls-name">Rishitha Dubbaka</h1>
-  <p class="ls-role">Data Science Intern at Great American Insurance Group</p>
-  <p class="ls-loc">Based in Cincinnati, OH</p>
+  <!-- Typography (Inter) + sensible fallbacks -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Social + Email -->
-  <nav class="ls-social" aria-label="Social links">
-    <a href="https://www.linkedin.com/in/your-handle" aria-label="LinkedIn" class="ls-icon" title="LinkedIn">
-      <!-- LinkedIn SVG -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.96 1.82-1.97 3.75-1.97 4.01 0 4.75 2.64 4.75 6.07V21H18v-4.9c0-1.17-.02-2.68-1.64-2.68-1.65 0-1.9 1.28-1.9 2.6V21H10V9z"/></svg>
-    </a>
-    <a href="https://github.com/your-handle" aria-label="GitHub" class="ls-icon" title="GitHub">
-      <!-- GitHub SVG -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.57v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.35-1.75-1.35-1.75-1.11-.76.09-.75.09-.75 1.22.09 1.87 1.25 1.87 1.25 1.09 1.87 2.86 1.33 3.56 1.02.11-.79.43-1.33.78-1.64-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.37 1.24-3.21-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.21 0 4.62-2.8 5.64-5.47 5.94.44.38.83 1.12.83 2.26v3.35c0 .31.22.68.83.56A12 12 0 0 0 12 .5"/></svg>
-    </a>
-    <a href="https://www.kaggle.com/your-handle" aria-label="Kaggle" class="ls-icon" title="Kaggle">
-      <!-- Kaggle K -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 4h2v7.3L16.4 4H19l-8.2 8.2L19.5 20H17l-9-9.2V20H6z"/></svg>
-    </a>
-    <a href="https://medium.com/@your-handle" aria-label="Medium" class="ls-icon" title="Medium">
-      <!-- Medium logo -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 7.5c0-.37.1-.74.31-1.05l-2.4-3.62V2h7.46l5.77 12.62L19.73 2H22v.83l-1.77 1.7c-.15.13-.23.33-.2.53v13.46c-.03.2.05.4.2.53L22 21.17V22h-6.5v-.83l1.85-1.79c.18-.18.18-.23.18-.5V8.35L11.67 22H10.8L5.58 8.35v8.46c-.05.36.06.72.3.98l2.41 2.95V22H2v-.83l2.41-2.95c.24-.26.35-.62.3-.98z"/></svg>
-    </a>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Personal portfolio of Your Name: projects, writing, and contact." />
+</head>
+<body>
+  <!-- Thin top accent rule -->
+  <div class="topbar" aria-hidden="true"></div>
 
-    <a href="mailto:rishitha@example.com" class="ls-email" aria-label="Email me">
-      email me
-    </a>
-  </nav>
+  <header class="site-header container">
+    <div class="header-block">
+      <h1 class="site-title">Your Name</h1>
+      <p class="site-subtitle">Data / Analytics • Based in City, Country</p>
+      <nav class="actions">
+        <a class="chip" href="mailto:you@example.com" aria-label="Email">email</a>
+        <a class="chip" href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://github.com/youruser" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- About -->
-  <section class="ls-block">
-    <h2 class="ls-subhead">About</h2>
-    <p class="ls-text">
-      Quantitative data scientist focused on building pipelines, optimizing SQL, and
-      delivering ML models that turn data into decisions. Comfortable translating business
-      problems into experiments and clear visuals.
-    </p>
-  </section>
+  <main class="container">
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <p>
+        Briefly describe what you do and what you’re interested in. Keep it concise and outcomes‑focused.
+        For example: I explore how data and simple models can unlock business insights. Particularly interested in forecasting,
+        experimentation, and elegant visualization.
+      </p>
+    </section>
 
-  <!-- Skills -->
-  <section class="ls-block">
-    <h2 class="ls-subhead">Skills</h2>
-    <ul class="ls-tags" role="list">
-      <li>SQL</li><li>Python</li><li>R</li><li>Tableau</li><li>Excel</li>
-      <li>Statistical modelling</li><li>Sampling techniques</li>
-    </ul>
-  </section>
-</aside>
+    <!-- PROJECTS (stacked, titles link directly to URLs) -->
+    <section id="projects" class="section">
+      <h2 class="section-title">Projects</h2>
+
+      <!-- Project 1 -->
+      <article class="project">
+        <header>
+          <h3 class="project-title">
+            <a href="https://example.com/your-project-1" target="_blank" rel="noopener">
+              AirBnB Listings Price Prediction
+            </a>
+          </h3>
+          <p class="project-meta">
+            2025 • Python, SQL, scikit‑learn
+          </p>
+        </header>
+        <p class="project-summary">
+          Built a regression model to estimate nightly prices from location, availability, and review features.
+          Emphasis on interpretable features and robust validation; reduced MAPE by 18% vs baseline.
+        </p>
+        <ul class="project-bullets">
+          <li>Feature pipeline with target leakage checks and nested CV.</li>
+          <li>Explainability using SHAP to guide pricing recommendations.</li>
+          <li>Deployed lightweight API for batch scoring.</li>
+        </ul>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project">
+        <header>
+          <h3 class="project-title">
+            <a href="https://example.com/your-project-2" target="_blank" rel="noopener">
+              Spotify Visual Data Art
+            </a>
+          </h3>
+          <p class="project-meta">
+            2024 • Python, SQL, JavaScript
+          </p>
+        </header>
+        <p class="project-summary">
+          Transformed audio features into generative visuals mapped to tempo and valence. Built an interactive page
+          to explore personal playlists with adjustable parameters.
+        </p>
+        <ul class="project-bullets">
+          <li>ETL pipeline to cache track features and reduce API calls.</li>
+          <li>Vector‑based rendering for crisp, fast visuals.</li>
+          <li>Accessible color palettes with high contrast.</li>
+        </ul>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project">
+        <header>
+          <h3 class="project-title">
+            <a href="https://example.com/your-project-3" target="_blank" rel="noopener">
+              Customer Churn Signals
+            </a>
+          </h3>
+          <p class="project-meta">
+            2023 • Python, XGBoost, Dash
+          </p>
+        </header>
+        <p class="project-summary">
+          Modeled churn drivers and exposed an internal dashboard to surface high‑risk cohorts and recommended offers.
+        </p>
+        <ul class="project-bullets">
+          <li>Imbalanced learning with calibrated probabilities for action thresholds.</li>
+          <li>Segment‑level uplift estimation to prioritize retention spend.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Contact</h2>
+      <p>
+        I’m open to collaborations and interesting problems. Reach me at
+        <a href="mailto:you@example.com">you@example.com</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <small>© <span id="year"></span> Your Name</small>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
