@@ -66,6 +66,22 @@ body{
 .btn-light{ background:#f9fafb; color:#111827; border:1px solid var(--border); }
 .btn-light:hover{ background:#f3f4f6; }
 
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  z-index: 9999;
+}
+.toast.show { display: block; }
+.toast[hidden] { display: none; }
+
 .section-subtitle{
   font-size: .95rem; color: var(--muted); font-weight: 600;
   margin: 14px 0 6px;
