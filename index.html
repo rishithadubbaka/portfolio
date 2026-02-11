@@ -1,149 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Portfolio – Left Sidebar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rishitha Dubbaka — Data Science</title>
-  <meta name="description" content="Portfolio of Rishitha Dubbaka — data science projects, experience, and contact." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Inter + Source Serif -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="page">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="card profile">
-        <img class="avatar" src="assets/headshot.jpg" alt="Rishitha Dubbaka headshot" />
-        <h1 class="name">Rishitha Dubbaka</h1>
-        <p class="role">Data Science Intern • Great American Insurance Group</p>
-        <p class="location">
-          <img src="icons/location.svg" alt="" class="icon" />
-          Cincinnati, OH
-        </p>
-
-        <div class="links">
-          <a class="chip" href="mailto:you@example.com">
-            <img src="icons/email.svg" alt="" class="icon" /> Email me
-          </a>
-          <a class="chip" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">
-            <img src="icons/linkedin.svg" alt="" class="icon" /> LinkedIn
-          </a>
-          <a class="chip" href="https://github.com/your-handle" target="_blank" rel="noopener">
-            <img src="icons/github.svg" alt="" class="icon" /> GitHub
-          </a>
+  <main class="page">
+    <aside class="sidebar" aria-label="Profile sidebar">
+      
+      <!-- Header -->
+      <header class="profile">
+        <img
+          class="avatar"
+          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=256&auto=format&fit=crop"
+          alt="Profile photo"
+        />
+        <div>
+          <h1 class="name">Alexander Marks</h1>
+          <p class="title">Data Analyst at Amazon</p>
+          <p class="location">Based in London, UK</p>
         </div>
+      </header>
+
+      <!-- Action buttons -->
+      _marks@example.com" class="btn btn--light">
+          <span class="icon icon-mail"></span> email me
+        </a>
+        <a href="https://github.com/your-handle" class="btn">
+          <span class="icon icon-github"></span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/your-handle" class="btn">
+          <span class="icon icon-link"></span> LinkedIn
+        </a>
       </div>
 
-      <div class="card about">
-        <h2>About</h2>
+      <!-- About -->
+      <section class="section about">
+        <h3>About</h3>
         <p>
-          I build data pipelines, optimize SQL, and create ML models that turn data into decisions.
-          I enjoy designing dashboards, speeding up queries, and scripting automations that remove repetitive work.
+          Quantitative economics graduate, enjoy working with business stakeholders
+          to help support strategy based on quantitative insights and statistical models.
         </p>
-      </div>
+      </section>
 
-      <div class="card skills">
-        <h2>Skills</h2>
-        <ul class="tags">
-          <li>Python</li><li>SQL</li><li>Pandas</li><li>Scikit‑learn</li>
-          <li>Tableau</li><li>Power BI</li><li>Spark</li><li>Git</li>
-        </ul>
-      </div>
+      <!-- Skills -->
+      <section class="section">
+        <h3>Skills</h3>
+        <div class="skills">
+          <span class="pill">SQL</span>
+          <span class="pill">Python</span>
+          <span class="pill">R</span>
+          <span class="pill">Tableau</span>
+          <span class="pill">Excel</span>
+          <span class="pill">Statistical modeling</span>
+          <span class="pill">Sampling techniques</span>
+        </div>
+      </section>
+
     </aside>
-
-    <!-- Main content -->
-    <main class="content">
-
-      <!-- Projects (stacked) -->
-<section class="section">
-  <h2 class="section-title">Projects</h2>
-
-  <!-- Project 1 -->
-  <article class="project stacked">
-    <img src="assets/airbnb.jpg" alt="Airbnb listings price prediction thumbnail" class="thumb square" />
-    <div class="project-body">
-      <h3 class="project-title">
-        <a href="https://your-airbnb-project.example.com" target="_blank" rel="noopener noreferrer">
-          Airbnb Listings Price Prediction
-        </a>
-      </h3>
-      <ul class="tags compact">
-        <li>Python</li><li>SQL</li><li>XGBoost</li><li>MLflow</li>
-      </ul>
-      <p>
-        End‑to‑end price model for short‑term rentals using location, amenities, and review signals.
-        Tracked experiments in MLflow and exposed a FastAPI scoring endpoint.
-      </p>
-    </div>
-  </article>
-
-  <!-- Project 2 -->
-  <article class="project stacked">
-    <img src="assets/spotify.jpg" alt="Spotify visual data art thumbnail" class="thumb square" />
-    <div class="project-body">
-      <h3 class="project-title">
-        <a href="https://your-spotify-visuals.example.com" target="_blank" rel="noopener noreferrer">
-          Spotify Visual Data Art
-        </a>
-      </h3>
-      <ul class="tags compact">
-        <li>Python</li><li>Plotly</li><li>Dash</li><li>SQLite</li>
-      </ul>
-      <p>
-        Interactive visualizations from audio features (energy, valence, tempo). Built a small ETL to cache API data and a Dash app to render shareable visual cards.
-      </p>
-    </div>
-  </article>
-
-  <!-- Duplicate <article> blocks for more projects -->
-</section>
-
-      <!-- Experience -->
-      <section class="section">
-        <h2 class="section-title">Experience</h2>
-
-        <div class="xp">
-          <h3>Data Science Intern — Great American Insurance Group</h3>
-          <p class="muted">May 2025 – Present · Cincinnati, OH</p>
-          <ul class="bullets">
-            <li>Built automated data pipelines to ingest claims data; reduced manual prep time by 60%.</li>
-            <li>Optimized SQL to cut key report runtime from 14m → 2m; added quality checks and alerts.</li>
-            <li>Prototyped risk‑scoring model; improved AUC from 0.68 → 0.79 with feature selection & calibration.</li>
-          </ul>
-          <ul class="tags compact">
-            <li>Python</li><li>SQL</li><li>Tableau</li><li>Scikit‑learn</li>
-          </ul>
-        </div>
-
-        <div class="xp">
-          <h3>Graduate Projects — University of Cincinnati</h3>
-          <p class="muted">2023 – 2024</p>
-          <ul class="bullets">
-            <li>Led a team project on time‑series forecasting for energy demand; MAPE improved by 12% vs ARIMA baseline.</li>
-            <li>Wrote reproducible notebooks with clear narratives and figures for non‑technical stakeholders.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section class="section">
-        <h2 class="section-title">Contact</h2>
-        <p>Open to data science, analytics, or ML engineering roles. The fastest way to reach me is email.</p>
-        <a class="primary-btn" href="mailto:you@example.com">Get in touch</a>
-      </section>
-
-      <footer class="footer">
-        <small>© <span id="year"></span> Rishitha Dubbaka · Built with HTML & CSS · Deployed on Vercel</small>
-      </footer>
-    </main>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <div class="right-placeholder"></div>
+  </main>
 </body>
 </html>
