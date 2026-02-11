@@ -120,7 +120,7 @@ body{
 
 .about .section-subtitle {
   margin-top: 4px;
-  margin-bottom: 2px;
+  margin-bottom: -1px;
   /* reduce space below "About" */
 }
 
