@@ -1,51 +1,54 @@
 <script>
   (function () {
-    const email = 'dubbakra@mail.uc.edu';
     const btn = document.getElementById('copy-email-btn');
     const toast = document.getElementById('copy-toast');
+    const email = btn.dataset.email || 'dubbakra@mail.uc.edu';
 
-    async function copyEmail(e) {
-      e.preventDefault();
-
-      try {
-        // Try modern Clipboard API
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(email);
-        } else {
-          // Fallback for older browsers / non-HTTPS
-          const ta = document.createElement('textarea');
-          ta.value = email;
-          ta.setAttribute('readonly', '');
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-        }
-
-        // Show confirmation
-        toast.textContent = `Email copied: ${email}`;
-        toast.hidden = false;
-        toast.classList.add('show');
-
-        // Hide after 2 seconds
-        setTimeout(() => {
-          toast.classList.remove('show');
-          toast.hidden = true;
-        }, 2000);
-      } catch (err) {
-        console.error('Copy failed', err);
-        toast.textContent = `Could not copy email.`;
-        toast.hidden = false;
-        setTimeout(() => (toast.hidden = true), 2000);
+    async function copyText(text) {
+      // Prefer modern Clipboard API (works best on HTTPS/localhost)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
       }
+      // Fallback: hidden textarea + execCommand
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
     }
 
-    btn.addEventListener('click', copyEmail);
-    // Optional: allow keyboard activation via Enter/Space
+    async function handleClick(e) {
+      e.preventDefault(); // prevent navigation
+      try {
+        await copyText(email);
+        toast.textContent = `Email copied: ${email}`;
+      } catch (err) {
+        console.error('Copy failed:', err);
+        toast.textContent = 'Could not copy email.';
+      }
+      // Show toast briefly
+      toast.hidden = false;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+        toast.hidden = true;
+      }, 1800);
+    }
+
+    // Click copies every time
+    btn.addEventListener('click', handleClick);
+
+    // Also support keyboard activation (Enter/Space)
     btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') copyEmail(e);
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleClick(e);
+      }
     });
   })();
 </script>
