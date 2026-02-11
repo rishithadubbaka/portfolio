@@ -1,67 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Portfolio – Left Sidebar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css">
-</head>
+<!-- ===== LEFT SIDEBAR ===== -->
+<aside class="sidebar">
+  <!-- Headshot -->
+  <img src="assets/headshot.jpg" alt="Rishitha Dubbaka headshot" class="avatar">
 
-<body>
-  <main class="page">
-    <aside class="sidebar" aria-label="Profile sidebar">
-      
-      <!-- Header -->
-      <header class="profile">
-        <img
-          class="avatar"
-          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=256&auto=format&fit=crop"
-          alt="Profile photo"
-        />
-        <div>
-          <h1 class="name">Alexander Marks</h1>
-          <p class="title">Data Analyst at Amazon</p>
-          <p class="location">Based in London, UK</p>
-        </div>
-      </header>
+  <!-- Identity -->
+  <h1 class="name">Rishitha Dubbaka</h1>
+  <p class="role">Data Science Intern · Great American Insurance Group</p>
+  <p class="location">Cincinnati, OH</p>
 
-      <!-- Action buttons -->
-      _marks@example.com" class="btn btn--light">
-          <span class="icon icon-mail"></span> email me
-        </a>
-        <a href="https://github.com/your-handle" class="btn">
-          <span class="icon icon-github"></span> GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/your-handle" class="btn">
-          <span class="icon icon-link"></span> LinkedIn
-        </a>
-      </div>
+  <!-- Contact -->
+  <div class="links">
+    <a class="chip" href="mailto:rishitha@example.com" aria-label="Email Rishitha">Email</a>
+    <a class="chip" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="chip" href="https://github.com/your-handle" target="_blank" rel="noopener">GitHub</a>
+  </div>
 
-      <!-- About -->
-      <section class="section about">
-        <h3>About</h3>
-        <p>
-          Quantitative economics graduate, enjoy working with business stakeholders
-          to help support strategy based on quantitative insights and statistical models.
-        </p>
-      </section>
+  <hr class="rule">
 
-      <!-- Skills -->
-      <section class="section">
-        <h3>Skills</h3>
-        <div class="skills">
-          <span class="pill">SQL</span>
-          <span class="pill">Python</span>
-          <span class="pill">R</span>
-          <span class="pill">Tableau</span>
-          <span class="pill">Excel</span>
-          <span class="pill">Statistical modeling</span>
-          <span class="pill">Sampling techniques</span>
-        </div>
-      </section>
+  <!-- About -->
+  <section class="section">
+    <h2>About</h2>
+    <p>
+      I build data pipelines, optimize SQL, and create ML models that turn raw data into decisions.
+      I enjoy designing dashboards, speeding up queries, and automating repetitive work.
+    </p>
+  </section>
 
-    </aside>
-    <div class="right-placeholder"></div>
-  </main>
-</body>
-</html>
+  <!-- Skills -->
+  <section class="section">
+    <h2>Skills</h2>
+    <ul class="tags">
+      <li>Python</li><li>SQL</li><li>Pandas</li><li>scikit‑learn</li>
+      <li>Tableau</li><li>Power BI</li><li>Spark</li><li>Git</li>
+    </ul>
+  </section>
+</aside>
