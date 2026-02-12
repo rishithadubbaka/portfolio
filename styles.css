@@ -273,3 +273,278 @@ a:focus-visible, .btn:focus-visible{
   .project-title{ font-size: 1.05rem; }
   .timeline-item{ grid-template-columns: 1fr; }
 }
+:root{
+  --bg: #ffffff;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --indigo: #4f46e5;
+  --indigo-700: #4338ca;
+  --tag-bg: #eef2ff;
+  --tag-text: #4338ca;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.03);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 210, 225, 0.45) 0%,
+      rgba(255, 235, 240, 0.45) 25%,
+      rgba(215, 230, 255, 0.45) 60%,
+      rgba(245, 248, 255, 0.6) 100%
+  );
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.6;
+}
+
+/* Layout */
+.page{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  padding: 24px clamp(16px, 3vw, 40px);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* Sidebar */
+.sidebar{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 18px;
+  height: fit-content;
+  background: var(--card);
+}
+
+.profile .avatar{
+  width: 200px; height: 200px; border-radius: 50%;
+  object-fit: cover; display:block;
+  border: 1px solid var(--border);
+}
+
+.name{ font-size: 1.4rem; margin: 14px 0 4px; font-weight: 700; }
+.role{ color: var(--muted); margin: 0 0 6px; }
+.location{ color: var(--muted); display:flex; align-items:center; gap:6px; margin: 0 0 10px; }
+.icon-sm{ width:16px; height:16px; }
+
+.socials{ display:flex; gap:12px; margin: 8px 0 12px; }
+.socials a{ color: var(--muted); transition: color .2s ease; }
+.socials a:hover{ color: var(--indigo); }
+/* Remove underline for icons */
+.socials a {
+  text-decoration: none !important;
+}
+
+/* Make font‑icon behave like SVG icons */
+.socials a i {
+  font-size: 28px;        /* match LinkedIn + GitHub (approx) */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.socials a i.ai-medium-fill {
+  transform: translateY(-2px);
+}
+
+.cta-row{ display:flex; gap:8px; margin: 6px 0 16px; }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 8px 12px; border-radius: 8px; font-weight: 600;
+  font-size: .92rem; text-decoration:none; transition: all .2s ease;
+}
+.btn-outline{ border:1px solid var(--border); color: var(--text); background:#fff; }
+.btn-outline:hover{ border-color: var(--indigo); color: var(--indigo); }
+.btn-light{ background:#f9fafb; color:#111827; border:1px solid var(--border); }
+.btn-light:hover{ background:#f3f4f6; }
+
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  z-index: 9999;
+}
+.toast.show { display: block; }
+.toast[hidden] { display: none; }
+
+.section-subtitle{
+  font-size: .95rem; color: var(--muted); font-weight: 600;
+  margin: 14px 0 6px;
+}
+
+/* Pills / tags */
+.pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill-row.compact{ gap:6px; }
+.pill{
+  background: var(--tag-bg); color: var(--tag-text);
+  border-radius: 999px; padding: 6px 10px; font-weight: 600; font-size: .82rem;
+  border: 1px solid #e0e7ff;
+}
+
+.about {
+  margin-top: 35px;   /* adds clean space above the About section */
+}
+
+.about .section-subtitle {
+  margin-top: 4px;
+  margin-bottom: -1px;
+  /* reduce space below "About" */
+}
+
+
+/* Main content blocks */
+/* Remove card chrome from the Projects block ONLY */
+.content .block#projects {
+  border: 0;
+  border-radius: 0;
+  padding: 0;                 /* since each project now has its own card */
+  background: transparent;
+  box-shadow: none;
+  margin-bottom: 24px;        /* keep some spacing below the section */
+}
+
+/* Tidy up the section heading spacing */
+#projects .section-title {
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.section-title{
+  font-size: 1.55rem; letter-spacing: .2px; color:#374151;
+  font-weight: 700; display:flex; align-items:center; gap:10px;
+  padding-bottom: 8px; border-bottom: none;
+  margin-top: 4px; margin-bottom: 14px;
+}
+
+/* —— Stacked projects (list form; now each row is a card) —— */
+.projects-stack { padding-top: 10px; }
+
+/* Project row AS a card */
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+
+  /* card look */
+  background: var(--card, #fff);
+  border: 1px solid var(--border, rgba(0,0,0,.08));
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  padding: 12px;                 /* inner spacing for the card */
+  overflow: hidden;              /* clip zoomed image corners */
+
+  /* spacing between list items */
+  margin-bottom: 16px;
+
+  /* remove old list-divider line */
+  border-bottom: none;
+}
+
+/* If you want the first/last item to have same spacing rules, keep these tidy */
+.project-row:first-of-type { margin-top: 0; }
+.project-row:last-of-type  { margin-bottom: 0; }
+
+/* Thumbnail: card owns radius/border/shadow now */
+.project-thumb {
+  display: block;
+  border-radius: 8px;   /* optional inner rounding for image; safe because card clips */
+  overflow: hidden;
+  border: 0;
+  box-shadow: none;
+  transition: box-shadow .35s ease, transform .35s ease;
+  will-change: transform;
+}
+
+/* Image fills the box; no border here */
+.project-thumb img{
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16/9;        /* polished banner look */
+  object-fit: cover;
+  transform: translateZ(0);
+  transition: transform .35s ease;
+}
+
+/* Subtle, refined hover: image zooms; card stays steady */
+.project-thumb:hover{
+  transform: translateY(-1px);
+}
+.project-thumb:hover img{
+  transform: scale(1.01);
+}
+
+/* Card body spacing (a touch more, since the row is now a card) */
+.project-body { padding-inline: 2px; }
+
+.project-title{
+  margin: 2px 0 4px;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+.project-title a{ color: var(--text); text-decoration: none; }
+.project-title a:hover{ color: var(--indigo); }
+
+.project-text{ color: #374151; margin-top: 8px; }
+
+.pill {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.readmore{
+  color: var(--indigo); text-decoration: none; font-weight: 600;
+  display:inline-block; margin-top: 8px;
+}
+.readmore:hover{ color: var(--indigo-700); text-decoration: underline; }
+
+/* Timeline */
+.timeline{ display:flex; flex-direction:column; gap:20px; }
+.timeline-item{ display:grid; grid-template-columns: 140px 1fr; gap:16px; }
+.timeline-meta{ color: var(--muted); font-weight:600; }
+.timeline-title{ margin: 0; font-size: 1rem; }
+.timeline-text{ margin: 6px 0 0; color:#374151; }
+
+/* Footer */
+.footer{
+  margin: 18px 0 40px; color: var(--muted);
+}
+.footer .container{
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+
+/* Links & focus */
+a{ color: inherit; }
+a:focus-visible, .btn:focus-visible{
+  outline: 3px solid #c7d2fe; outline-offset: 2px; border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .page{ grid-template-columns: 1fr; }
+  .sidebar{ position: static; }
+}
+@media (max-width: 600px){
+  .project-row{ gap: 8px; padding: 14px 0; }
+  .project-title{ font-size: 1.05rem; }
+  .timeline-item{ grid-template-columns: 1fr; }
+}
