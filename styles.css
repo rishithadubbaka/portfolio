@@ -157,21 +157,35 @@ body{
   border-radius: 12px;
   overflow: hidden;
 }
+/* Container holds radius, border, overflow and shadow */
+.project-thumb{
+  display: block;
+  border-radius: 10px;                      /* subtle, modern */
+  overflow: hidden;                         /* clip zoomed image to rounded corners */
+  border: 1px solid var(--border);          /* move border here to avoid clip artifacts */
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);   /* softer default */
+  transition: box-shadow .35s ease, transform .35s ease;
+  will-change: transform;                   /* hint for smoother hover */
+}
+
+/* Image fills the box; no border needed */
 .project-thumb img{
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 16/9;             /* polished banner look */
+  aspect-ratio: 16/9;                       /* polished banner look */
   object-fit: cover;
-  transition: transform .35s ease, box-shadow .35s ease;
-  border: 1px solid var(--border); /* thin edge to match theme */
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  transform: translateZ(0);                 /* promote for smoother scaling */
+  transition: transform .35s ease;
 }
 
+/* Subtle, refined hover: a touch more elevation + slight scale */
+.project-thumb:hover{
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+  transform: translateY(-1px);
+}
 .project-thumb:hover img{
-  transform: scale(1.01); /* very subtle */
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  transform: scale(1.01);
 }
 
 .project-body { padding-inline: 2px; }
