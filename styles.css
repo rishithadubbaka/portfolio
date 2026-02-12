@@ -139,56 +139,67 @@ body{
   margin-top: 4px; margin-bottom: 14px;
 }
 
-/* —— Stacked projects (no card style) —— */
+/* —— Stacked projects (list form; now each row is a card) —— */
 .projects-stack { padding-top: 10px; }
 
-.project-row{
+/* Project row AS a card */
+.project-row {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-}
-.project-row:first-of-type { padding-top: 0; }
-.project-row:last-of-type { border-bottom: 0; padding-bottom: 0; }
 
-.project-thumb{
-  display: block;
+  /* card look */
+  background: var(--card, #fff);
+  border: 1px solid var(--border, rgba(0,0,0,.08));
   border-radius: 12px;
-  overflow: hidden;
-}
-/* Container holds radius, border, overflow and shadow */
-.project-thumb{
-  display: block;
-  border-radius: 10px;                      /* subtle, modern */
-  overflow: hidden;                         /* clip zoomed image to rounded corners */
-  border: 1px solid var(--border);          /* move border here to avoid clip artifacts */
-  box-shadow: 0 2px 10px rgba(0,0,0,.08);   /* softer default */
-  transition: box-shadow .35s ease, transform .35s ease;
-  will-change: transform;                   /* hint for smoother hover */
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  padding: 12px;                 /* inner spacing for the card */
+  overflow: hidden;              /* clip zoomed image corners */
+
+  /* spacing between list items */
+  margin-bottom: 16px;
+
+  /* remove old list-divider line */
+  border-bottom: none;
 }
 
-/* Image fills the box; no border needed */
+/* If you want the first/last item to have same spacing rules, keep these tidy */
+.project-row:first-of-type { margin-top: 0; }
+.project-row:last-of-type  { margin-bottom: 0; }
+
+/* Thumbnail: card owns radius/border/shadow now */
+.project-thumb {
+  display: block;
+  border-radius: 8px;   /* optional inner rounding for image; safe because card clips */
+  overflow: hidden;
+  border: 0;
+  box-shadow: none;
+  transition: box-shadow .35s ease, transform .35s ease;
+  will-change: transform;
+}
+
+/* Image fills the box; no border here */
 .project-thumb img{
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 16/9;                       /* polished banner look */
+  aspect-ratio: 16/9;        /* polished banner look */
   object-fit: cover;
-  transform: translateZ(0);                 /* promote for smoother scaling */
+  transform: translateZ(0);
   transition: transform .35s ease;
 }
 
-/* Subtle, refined hover: a touch more elevation + slight scale */
+/* Subtle, refined hover: image zooms; card stays steady */
 .project-thumb:hover{
-  box-shadow: 0 6px 24px rgba(0,0,0,.12);
   transform: translateY(-1px);
 }
 .project-thumb:hover img{
   transform: scale(1.01);
 }
 
+/* Card body spacing (a touch more, since the row is now a card) */
 .project-body { padding-inline: 2px; }
+
 .project-title{
   margin: 2px 0 4px;
   font-size: 1.1rem;
