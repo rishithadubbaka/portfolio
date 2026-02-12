@@ -161,12 +161,18 @@ body{
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 16/9;           /* polished banner look */
+  aspect-ratio: 16/9;             /* polished banner look */
   object-fit: cover;
-  transition: transform .35s ease;
+  transition: transform .35s ease, box-shadow .35s ease;
   border: 1px solid var(--border); /* thin edge to match theme */
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.10);
 }
-.project-thumb:hover img{ transform: scale(1.01); } /* very subtle */
+
+.project-thumb:hover img{
+  transform: scale(1.01); /* very subtle */
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
 
 .project-body { padding-inline: 2px; }
 .project-title{
