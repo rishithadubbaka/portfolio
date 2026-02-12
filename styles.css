@@ -126,10 +126,20 @@ body{
 
 
 /* Main content blocks */
-.content .block{
-  border: 1px solid var(--border);
-  border-radius: 12px; padding: 18px; background: var(--card);
-  margin-bottom: 18px; box-shadow: var(--shadow);
+/* Remove card chrome from the Projects block ONLY */
+.content .block#projects {
+  border: 0;
+  border-radius: 0;
+  padding: 0;                 /* since each project now has its own card */
+  background: transparent;
+  box-shadow: none;
+  margin-bottom: 24px;        /* keep some spacing below the section */
+}
+
+/* Tidy up the section heading spacing */
+#projects .section-title {
+  margin: 0 0 10px;
+  padding: 0;
 }
 
 .section-title{
