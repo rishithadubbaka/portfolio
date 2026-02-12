@@ -14,7 +14,16 @@
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body{
-  margin:0; background: var(--bg); color: var(--text);
+  margin: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 210, 225, 0.45) 0%,
+      rgba(255, 235, 240, 0.45) 25%,
+      rgba(215, 230, 255, 0.45) 60%,
+      rgba(245, 248, 255, 0.6) 100%
+  );
+  background-attachment: fixed;
+  color: var(--text);
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.6;
 }
