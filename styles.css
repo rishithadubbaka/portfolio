@@ -349,19 +349,7 @@ a:focus-visible, .btn:focus-visible{
   }
 }
 
-/* 8) Optional: “media” layout on wider screens (image left, text right) */
-@media (min-width: 980px) {
-  .project-row {
-    display: grid;
-    grid-template-columns: 42% 1fr;
-    column-gap: 16px;
-    align-items: start;
-  }
-  .project-body { padding-inline: 0; }
-  .project-thumb { border-radius: 10px; }
-}
-
-/* 9) Respect reduced motion preferences */
+/* 8) Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .project-row,
   .project-thumb,
